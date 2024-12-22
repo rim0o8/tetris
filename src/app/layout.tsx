@@ -39,8 +39,8 @@ export default function RootLayout({
   return (
     <html lang={i18n.language} suppressHydrationWarning>
       <Providers>
-        <body className="min-h-screen bg-background font-sans antialiased">
-          <main className="container mx-auto px-4">
+        <body className="min-h-screen bg-background font-sans antialiased" style={{ overflow: 'hidden', position: 'fixed', width: '100%', height: '100%' }}>
+          <main className="container mx-auto px-4" style={{ overflow: 'hidden' }}>
             {children}
           </main>
         </body>

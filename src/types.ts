@@ -8,6 +8,36 @@ export type Tetromino = {
   color: string;
 };
 
+export type GameControls = {
+  moveDown: () => void;
+  moveLeft: () => void;
+  moveRight: () => void;
+  rotate: () => void;
+  instantDrop: () => void;
+};
+
+export type GameState = {
+  board: Cell[][];
+  setBoard: (board: Cell[][]) => void;
+  currentPiece: Tetromino;
+  setCurrentPiece: (piece: Tetromino) => void;
+  nextPiece: Tetromino;
+  setNextPiece: (piece: Tetromino) => void;
+  position: { x: number; y: number };
+  setPosition: (position: { x: number; y: number }) => void;
+  score: number;
+  setScore: (score: number) => void;
+  gameOver: boolean;
+  setGameOver: (gameOver: boolean) => void;
+  isPlaying: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
+  clearedLines: number[];
+  setClearedLines: (lines: number[]) => void;
+  isClearing: boolean;
+  setIsClearing: (isClearing: boolean) => void;
+  gameSpeed: number;
+};
+
 export const TETROMINOS: { [key: string]: Tetromino } = {
   I: {
     shape: [[1, 1, 1, 1]],
