@@ -62,7 +62,7 @@ export function useGameControls(gameState: GameState): GameControls {
         setBoard(clearedBoard);
         setClearedLines([]);
         setIsClearing(false);
-        setScore((prev) => prev + newClearedLines.length * 100);
+        setScore(score + newClearedLines.length * 100);
       }, 500);
     } else {
       setBoard(clearedBoard);
@@ -76,7 +76,7 @@ export function useGameControls(gameState: GameState): GameControls {
       setNextPiece(getRandomTetromino());
       setPosition({ x: 3, y: 0 });
     }
-  }, [board, currentPiece, nextPiece, position, setBoard, setCurrentPiece, setGameOver, setIsClearing, setIsPlaying, setNextPiece, setPosition, setScore, setClearedLines]);
+  }, [board, currentPiece, nextPiece, position, setBoard, setCurrentPiece, setGameOver, setIsClearing, setIsPlaying, setNextPiece, setPosition, setScore, setClearedLines, score]);
 
   const clearLines = useCallback((board: Cell[][]): [Cell[][], number[]] => {
     const newBoard = board.map((row) => [...row]);
@@ -98,7 +98,7 @@ export function useGameControls(gameState: GameState): GameControls {
 
   const moveDown = useCallback(() => {
     if (!isColliding(board, currentPiece, { x: position.x, y: position.y + 1 })) {
-      setPosition((prev) => ({ ...prev, y: prev.y + 1 }));
+      setPosition({ x: position.x, y: position.y + 1 });
     } else {
       placePiece();
     }
@@ -106,13 +106,13 @@ export function useGameControls(gameState: GameState): GameControls {
 
   const moveLeft = useCallback(() => {
     if (!isColliding(board, currentPiece, { x: position.x - 1, y: position.y })) {
-      setPosition((prev) => ({ ...prev, x: prev.x - 1 }));
+      setPosition({ x: position.x - 1, y: position.y });
     }
   }, [board, currentPiece, position, setPosition]);
 
   const moveRight = useCallback(() => {
     if (!isColliding(board, currentPiece, { x: position.x + 1, y: position.y })) {
-      setPosition((prev) => ({ ...prev, x: prev.x + 1 }));
+      setPosition({ x: position.x + 1, y: position.y });
     }
   }, [board, currentPiece, position, setPosition]);
 
